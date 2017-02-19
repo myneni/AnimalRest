@@ -65,8 +65,8 @@ public class AnimalRestController {
 		if (!validator.validateXMLSchema("AnimalRequest.xsd", requestXml))
 			throw new InvalidRequestException();
 
+		// Map XML to Java Object
 		JacksonXmlModule module = new JacksonXmlModule();
-		// to default to using "unwrapped" Lists:
 		module.setDefaultUseWrapper(false);
 		XmlMapper xmlMapper = new XmlMapper(module);
 		AnimalRequest request = null;
@@ -97,24 +97,46 @@ public class AnimalRestController {
 		// Find the Animals
 		Animals animals = animalService.getAnimalRegionByName(request.getNames());
 
+		// Validate response
 		if (animals == null || CollectionUtils.isEmpty(animals.getAnimals()))
 			throw new AnimalNotFoundException();
 
 		return animals;
 	}
 
+	/**
+	 * Handler for DuplicateRequestException
+	 * 
+	 * @param req
+	 * @param e
+	 * @return ResponseEntity
+	 */
 	@ExceptionHandler(DuplicateReqestException.class)
 	public ResponseEntity<ErrorResponse> duplicateRequestExceptionHandler(HttpServletRequest req, Exception e) {
 		ErrorResponse error = new ErrorResponse("DUPLICATE_REQUEST", "Duplicate request in last 24 hours");
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.CONFLICT);
 	}
 
+	/**
+	 * Handler for InvalidRequestException
+	 * 
+	 * @param req
+	 * @param e
+	 * @return ResponseEntity
+	 */
 	@ExceptionHandler(InvalidRequestException.class)
 	public ResponseEntity<ErrorResponse> badRequestExceptionHandler(HttpServletRequest req, Exception e) {
 		ErrorResponse error = new ErrorResponse("INVALID_REQUEST", "Bad Request XML input");
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);
 	}
 
+	/**
+	 * Handler for AnimalNotFoundException
+	 * 
+	 * @param req
+	 * @param e
+	 * @return ResponseEntity
+	 */
 	@ExceptionHandler(AnimalNotFoundException.class)
 	public ResponseEntity<ErrorResponse> animalNotFoundExceptionHandler(HttpServletRequest req, Exception e) {
 		ErrorResponse error = new ErrorResponse("ANIMAL_NOT_FOUND", "Animals not found in Repository");

@@ -4,6 +4,8 @@
 package com.cognizant.animalsearchapp.rest.model;
 
 /**
+ * Error Response to send XML formated error code and message
+ * 
  * @author Syamala
  *
  */
