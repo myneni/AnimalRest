@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<animals xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="AnimalRequest.xsd">
+  <animals>
+    <id>0</id>
+    <name>name</name>
+    <region>region</region>
+  </animals>
+  <animals>
+    <id>0</id>
+    <name>name</name>
+    <region>region</region>
+  </animals>
+  <animals>
+    <id>0</id>
+    <name>name</name>
+    <region>region</region>
+  </animals>
+</animals>
