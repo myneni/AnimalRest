@@ -39,6 +39,9 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-web', version: '4.1.4.RELEASE'
     compile group: 'org.springframework', name: 'spring-core', version: '4.1.4.RELEASE'
     compile group: 'org.springframework', name: 'spring-webmvc', version: '4.1.4.RELEASE'
+   // https://mvnrepository.com/artifact/org.springframework/spring-test
+	compile group: 'org.springframework', name: 'spring-test', version: '2.5'
+   
     compile 'org.codehaus.woodstox:woodstox-core-asl:4.4.1'
    
 	compile group: 'org.springframework', name: 'spring-jdbc', version: '4.1.6.RELEASE'
@@ -47,5 +50,6 @@ dependencies {
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-core:1.+" 
+    testCompile 'org.springframework:spring-test:4.1.4.RELEASE'
 }
 

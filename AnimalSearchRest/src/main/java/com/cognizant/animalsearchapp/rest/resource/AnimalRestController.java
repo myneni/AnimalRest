@@ -42,7 +42,11 @@ public class AnimalRestController {
 	private AnimalRequestValidator validator;
 
 	/**
-	 * This API get the Country of animal
+	 * This API get the Geographical region of animal by Names Input is
+	 * serialized xml String and output is XML It validated the XML request
+	 * against XSD It process only 3 animals per request It throws
+	 * DuplicateReqestException if Same 3 animal names requested in past 1day.
+	 * It logs incoming Request for request history
 	 * 
 	 * @param requestXml
 	 * @return
@@ -50,8 +54,8 @@ public class AnimalRestController {
 	 * @throws InvalidRequestException
 	 * @throws AnimalNotFoundException
 	 */
-	@RequestMapping(value = "/country", method = RequestMethod.GET)
-	public Animals getAnimalCountry1(@QueryParam("requestXml") String requestXml)
+	@RequestMapping(value = "/region", method = RequestMethod.GET)
+	public Animals getAnimalRegion(@QueryParam("requestXml") String requestXml)
 			throws DuplicateReqestException, InvalidRequestException, AnimalNotFoundException {
 
 		if (requestXml == null)
@@ -74,7 +78,7 @@ public class AnimalRestController {
 				throw new InvalidRequestException();
 			logger.debug("Schema validation Completed. Converted AnimalRequest :{}", request);
 		} catch (IOException e) {
-			logger.error("Schema Validation Failed. Bad Input");
+			logger.error("XML Parsing Failed. Bad Input");
 			throw new InvalidRequestException();
 		}
 		/*
@@ -107,13 +111,13 @@ public class AnimalRestController {
 
 	@ExceptionHandler(InvalidRequestException.class)
 	public ResponseEntity<ErrorResponse> badRequestExceptionHandler(HttpServletRequest req, Exception e) {
-		ErrorResponse error = new ErrorResponse("DUPLICATE_REQUEST", "Bad Request XML input");
+		ErrorResponse error = new ErrorResponse("INVALID_REQUEST", "Bad Request XML input");
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(AnimalNotFoundException.class)
 	public ResponseEntity<ErrorResponse> animalNotFoundExceptionHandler(HttpServletRequest req, Exception e) {
-		ErrorResponse error = new ErrorResponse("DUPLICATE_REQUEST", "Animals not found in Repository");
+		ErrorResponse error = new ErrorResponse("ANIMAL_NOT_FOUND", "Animals not found in Repository");
 		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);
 	}
 

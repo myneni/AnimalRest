@@ -1,7 +1,5 @@
 package com.cognizant.animalsearchapp.rest.animaldao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +10,6 @@ import javax.sql.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -28,6 +25,21 @@ public class AnimalDAOImpl implements AnimalDao {
 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+	/**
+	 * @return the namedParameterJdbcTemplate
+	 */
+	public final NamedParameterJdbcTemplate getNamedParameterJdbcTemplate() {
+		return namedParameterJdbcTemplate;
+	}
+
+	/**
+	 * @param namedParameterJdbcTemplate
+	 *            the namedParameterJdbcTemplate to set
+	 */
+	public final void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	}
+
 	@Autowired
 	public AnimalDAOImpl(DataSource dataSource) {
 		namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
@@ -39,20 +51,7 @@ public class AnimalDAOImpl implements AnimalDao {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("names", names);
 		logger.debug("findRegionByName SQL: {}", sql);
-		List<Animal> animalList = namedParameterJdbcTemplate.query(sql, params, new RowMapper<Animal>() {
-
-			@Override
-			public Animal mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Animal animal = new Animal();
-
-				animal.setId(rs.getInt("id"));
-				animal.setName(rs.getString("name"));
-				animal.setRegion(rs.getString("region"));
-				animal.setAccessTimeStamp(rs.getTimestamp("accesstime"));
-				return animal;
-			}
-
-		});
+		List<Animal> animalList = namedParameterJdbcTemplate.query(sql, params, new AnimalRowMapper());
 		Animals animals = new Animals();
 		animals.addAnimals(animalList);
 		return animals;
@@ -85,20 +84,7 @@ public class AnimalDAOImpl implements AnimalDao {
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("name", sort(animalNames));
 		logger.debug("getAccessLog SQL: {}", sql);
-		List<AnimalAccessLog> accessLogs = namedParameterJdbcTemplate.query(sql, params,
-				new RowMapper<AnimalAccessLog>() {
-
-					@Override
-					public AnimalAccessLog mapRow(ResultSet rs, int rowNum) throws SQLException {
-						AnimalAccessLog animalAccessLog = new AnimalAccessLog();
-
-						animalAccessLog.setRequestId(rs.getInt("RequestId"));
-						animalAccessLog.setName(rs.getString("names"));
-						animalAccessLog.setAccessTime(rs.getTimestamp("accessTimestamp"));
-						return animalAccessLog;
-					}
-
-				});
+		List<AnimalAccessLog> accessLogs = namedParameterJdbcTemplate.query(sql, params, new AnimalAccessLogMapper());
 		logger.debug("Access Logs : {}", accessLogs);
 		return accessLogs;
 	}
