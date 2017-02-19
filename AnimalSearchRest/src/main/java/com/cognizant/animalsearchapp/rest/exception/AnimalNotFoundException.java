@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * @author Anisha
+ * @author Syamala
  *
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Animal Not found")

@@ -5,16 +5,15 @@ package com.cognizant.animalsearchapp.rest.animalservice;
 
 import java.util.List;
 
-import com.cognizant.animalsearchapp.rest.model.Animal;
 import com.cognizant.animalsearchapp.rest.model.AnimalAccessLog;
 import com.cognizant.animalsearchapp.rest.model.Animals;
 
 /**
- * @author Anisha
+ * @author Syamala
  *
  */
 public interface AnimalService {
-	public Animals getAnimalRegionByName(List<Animal> animalList);
+	public Animals getAnimalRegionByName(List<String> animalList);
 
 	public List<AnimalAccessLog> getAccessLog(List<String> names);
 

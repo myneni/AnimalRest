@@ -4,7 +4,7 @@
 package com.cognizant.animalsearchapp.rest.config;
 
 /**
- * @author Anisha
+ * @author Syamala
  *
  */
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

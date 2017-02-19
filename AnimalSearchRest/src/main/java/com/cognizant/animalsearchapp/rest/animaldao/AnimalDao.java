@@ -9,7 +9,7 @@ import com.cognizant.animalsearchapp.rest.model.AnimalAccessLog;
 import com.cognizant.animalsearchapp.rest.model.Animals;
 
 /**
- * @author Anisha
+ * @author Syamala
  *
  */
 public interface AnimalDao {
