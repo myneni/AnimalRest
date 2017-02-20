@@ -30,7 +30,7 @@ import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 @RestController
-@RequestMapping(value = "/animals")
+@RequestMapping(value = "/v1/animals")
 public class AnimalRestController {
 
 	private final Logger logger = LoggerFactory.getLogger(AnimalRestController.class);

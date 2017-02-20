@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.cognizant.animalsearchapp.rest.model.Animal;
 
 /**
- * @author Anisha
+ * @author Syamala
  *
  */
 public class AnimalRowMapper implements RowMapper<Animal> {

@@ -44,6 +44,7 @@ public class AnimalServiceImpl implements AnimalService {
 		return animals;
 	}
 
+	@Override
 	public int logAccessRequest(List<String> names) {
 		logger.debug("Animal logAccessRequest: {}", names);
 		return animalDao.logAccessRequest(names);

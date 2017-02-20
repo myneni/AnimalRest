@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import com.cognizant.animalsearchapp.rest.model.AnimalAccessLog;
 
 /**
- * @author Anisha
+ * @author Syamala
  *
  */
 public class AnimalAccessLogMapper implements RowMapper<AnimalAccessLog> {

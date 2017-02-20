@@ -85,7 +85,7 @@ public class AnimalRestControllerTest {
 		Mockito.when(animalService.logAccessRequest(Matchers.anyListOf(String.class))).thenReturn(1);
 		Mockito.when(animalService.getAnimalRegionByName(Matchers.anyListOf(String.class))).thenReturn(animals);
 
-		MvcResult result = this.mockMvc.perform(get(new URI("/animals/region")).param("requestXml", input))
+		MvcResult result = this.mockMvc.perform(get(new URI("/v1/animals/region")).param("requestXml", input))
 				.andExpect(status().isOk()).andReturn();
 		String content = result.getResponse().getContentAsString();
 
@@ -108,7 +108,7 @@ public class AnimalRestControllerTest {
 		Mockito.when(animalService.getAccessLog(Matchers.anyListOf(String.class))).thenReturn(logs);
 		Mockito.when(animalService.logAccessRequest(Matchers.anyListOf(String.class))).thenReturn(1);
 
-		MvcResult result = this.mockMvc.perform(get(new URI("/animals/region")).param("requestXml", input))
+		MvcResult result = this.mockMvc.perform(get(new URI("/v1/animals/region")).param("requestXml", input))
 				.andExpect(status().isBadRequest()).andReturn();
 		String content = result.getResponse().getContentAsString();
 
@@ -132,7 +132,7 @@ public class AnimalRestControllerTest {
 		Mockito.when(animalService.getAccessLog(Matchers.anyListOf(String.class))).thenReturn(logs);
 		Mockito.when(animalService.logAccessRequest(Matchers.anyListOf(String.class))).thenReturn(1);
 
-		MvcResult result = this.mockMvc.perform(get(new URI("/animals/region")).param("requestXml", input))
+		MvcResult result = this.mockMvc.perform(get(new URI("/v1/animals/region")).param("requestXml", input))
 				.andExpect(status().isConflict()).andReturn();
 		String content = result.getResponse().getContentAsString();
 
