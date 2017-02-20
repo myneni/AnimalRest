@@ -58,10 +58,13 @@ public class AnimalServiceImplTest {
 		List<Animal> animalList = new ArrayList<Animal>();
 		Animal animal = new Animal();
 		animal.setName("tiger");
+		animal.setRegion("USA");
 		Animal animal1 = new Animal();
 		animal1.setName("lion");
+		animal1.setRegion("AFRICA");
 		Animal animal2 = new Animal();
 		animal2.setName("elephant");
+		animal2.setRegion("INDIA");
 		animalList.add(animal);
 		animalList.add(animal1);
 		animalList.add(animal2);

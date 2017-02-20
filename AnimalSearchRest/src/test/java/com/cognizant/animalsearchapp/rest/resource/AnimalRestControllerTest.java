@@ -35,7 +35,7 @@ import com.cognizant.animalsearchapp.rest.model.Animals;
 import com.cognizant.animalsearchapp.rest.validator.AnimalRequestValidator;
 
 /**
- * @author Anisha
+ * @author Syamala
  *
  */
 @RunWith(MockitoJUnitRunner.class)
