@@ -12,14 +12,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.cognizant.animalsearchapp.rest.model.Animal;
 import com.cognizant.animalsearchapp.rest.model.AnimalAccessLog;
 import com.cognizant.animalsearchapp.rest.model.Animals;
 import com.google.common.base.Joiner;
 
-@Component
+@Repository
 public class AnimalDAOImpl implements AnimalDao {
 	private final Logger logger = LoggerFactory.getLogger(AnimalDAOImpl.class);
 
